@@ -139,6 +139,15 @@ class EdgeController extends Controller
         try {
             Artisan::call('migrate:fresh');
             $response = Http::get('https://sipunggur.iotsiskom.com/api/data');
+            foreach($response->object()->data->threshold as $threshold){
+                Threshold::create(
+                    [
+                        'humidity' => $threshold->humidity,
+                        'temperature' => $threshold->temperature,
+                        'soil_moisture' => $threshold->soil_moisture,
+                    ]
+                );
+            }
             foreach ($response->object()->data->node as $node) {
                 Node::create(
                     [
