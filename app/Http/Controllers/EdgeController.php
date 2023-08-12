@@ -72,7 +72,7 @@ class EdgeController extends Controller
                 //     ]
                 // );
                 $response = Http::post('https://sipunggur.iotsiskom.com/api/edge/soil',
-                    $send);
+                   ['data' => $send]);
                 return response()->json($response->json(),200);
             } catch (Exception $e) {
 
