@@ -30,7 +30,7 @@ class EdgeController extends Controller
             $threshold = Threshold::first();
             try {
                 foreach ($request->sensor_id as $soil) {
-                    $data[] = [
+                    $send[] = [
                         'sensor_id' => $request['sensor_id'][$i],
                         'value' => $request['value'][$i],
                     ];
@@ -72,7 +72,7 @@ class EdgeController extends Controller
                 //     ]
                 // );
                 $response = Http::post('https://sipunggur.iotsiskom.com/api/edge/soil',
-                    $data);
+                    $send);
                 return response()->json($response->json(),200);
             } catch (Exception $e) {
 
