@@ -138,7 +138,7 @@ class EdgeController extends Controller
     {
         try {
             Artisan::call('migrate:fresh');
-            $response = Http::get('http://127.0.0.1:8000/api/data');
+            $response = Http::get('https://sipunggur.iotsiskom.com/api/data');
             foreach ($response->object()->data->node as $node) {
                 Node::create(
                     [
